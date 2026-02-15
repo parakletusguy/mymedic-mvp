@@ -26,6 +26,10 @@ jobs:
       - name: Install dependencies
         run: |
           cd mobile
+          # Generate missing android boilerplate if it doesn't exist
+          if [ ! -d "android" ]; then
+            flutter create . --platforms=android
+          fi
           flutter pub get
           
       - name: Build APK
