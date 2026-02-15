@@ -10,7 +10,7 @@ abstract final class AppTheme {
     useMaterial3: true,
     colorScheme: AppColors.lightScheme,
     scaffoldBackgroundColor: AppColors.background,
-    fontFamily: 'NotoSans',
+    fontFamily: 'Inter',
 
     // ── AppBar ────────────────────────────────────────────────
     appBarTheme: const AppBarTheme(

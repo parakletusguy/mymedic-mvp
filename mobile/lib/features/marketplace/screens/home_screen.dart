@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../repositories/marketplace_repository.dart';
 import '../../../shared/widgets/professional_card.dart';
+import 'professional_detail_screen.dart';
 
 final searchProvider = StateProvider<String>((ref) => '');
 

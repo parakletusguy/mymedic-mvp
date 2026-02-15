@@ -66,7 +66,7 @@ class _BookingScreenState extends ConsumerState<BookingScreen> {
   @override
   Widget build(BuildContext context) {
     final dateStr = DateFormat('yyyy-MM-dd').format(_selectedDate);
-    final slotsAsync = ref.watch(futureSlotsProvider(widget.professional['user_id'], dateStr));
+    final slotsAsync = ref.watch(slotsProvider((profId: widget.professional['user_id'] as String, date: dateStr)));
 
     return Scaffold(
       appBar: AppBar(title: const Text('Select Time Slot')),
