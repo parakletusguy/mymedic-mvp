@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=mymedic_db
+      - POSTGRES_USER=mymedic
+      - POSTGRES_PASSWORD=changeme
+    ports:
+      - "5432:5432"
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://mymedic:changeme@db:5432/mymedic_db
+      - DEBUG=true
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
