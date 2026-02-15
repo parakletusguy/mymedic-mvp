@@ -3,7 +3,7 @@ description: HIPAA-compliant patient & professional medical booking app.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -46,12 +46,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  fonts:
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter-Regular.ttf
-        - asset: assets/fonts/Inter-Bold.ttf
-          weight: 700
-  assets:
-    - assets/images/
-    - assets/icons/
+#   fonts:
+#     - family: Inter
+#       fonts:
+#         - asset: assets/fonts/Inter-Regular.ttf
+#         - asset: assets/fonts/Inter-Bold.ttf
+#           weight: 700
+#   assets:
+#     - assets/images/
+#     - assets/icons/

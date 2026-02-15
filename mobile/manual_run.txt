@@ -1,0 +1,40 @@
+﻿[!] Flutter (Channel stable, 3.38.8, on Microsoft Windows [Version 10.0.22000.2538], locale en-US) [7.9s]
+    ΓÇó Flutter version 3.38.8 on channel stable at c:\Users\PARAKLETUS HUB\.antigravity\flutter
+    ! The flutter binary is not on your path. Consider adding c:\Users\PARAKLETUS HUB\.antigravity\flutter\bin to your path.
+    ! The dart binary is not on your path. Consider adding c:\Users\PARAKLETUS HUB\.antigravity\flutter\bin to your path.
+    ΓÇó Upstream repository https://github.com/flutter/flutter.git
+    ΓÇó Framework revision bd7a4a6b55 (3 weeks ago), 2026-01-26 15:21:03 -0800
+    ΓÇó Engine revision db373eb85a
+    ΓÇó Dart version 3.10.7
+    ΓÇó DevTools version 2.51.1
+    ΓÇó Feature flags: enable-web, enable-linux-desktop, enable-macos-desktop, enable-windows-desktop, enable-android, enable-ios, cli-animations, enable-native-assets, omit-legacy-version-file, enable-lldb-debugging
+    ΓÇó If those were intentional, you can disregard the above warnings; however it is recommended to use "git" directly to perform update checks and upgrades.
+
+[ΓêÜ] Windows Version (11 Pro 64-bit, 21H2, 2009) [81.5s]
+
+[X] Android toolchain - develop for Android devices [4.4s]
+    X Unable to locate Android SDK.
+      Install Android Studio from: https://developer.android.com/studio/index.html
+      On first launch it will assist you in installing the Android SDK components.
+      (or visit https://flutter.dev/to/windows-android-setup for detailed instructions).
+      If the Android SDK has been installed to a custom location, please use
+      `flutter config --android-sdk` to update to that location.
+
+
+[ΓêÜ] Chrome - develop for the web [4.4s]
+    ΓÇó Chrome at C:\Program Files\Google\Chrome\Application\chrome.exe
+
+[X] Visual Studio - develop Windows apps [4.4s]
+    X Visual Studio not installed; this is necessary to develop Windows apps.
+      Download at https://visualstudio.microsoft.com/downloads/.
+      Please install the "Desktop development with C++" workload, including all of its default components
+
+[ΓêÜ] Connected device (3 available) [3.5s]
+    ΓÇó Windows (desktop) ΓÇó windows ΓÇó windows-x64    ΓÇó Microsoft Windows [Version 10.0.22000.2538]
+    ΓÇó Chrome (web)      ΓÇó chrome  ΓÇó web-javascript ΓÇó Google Chrome 144.0.7559.133
+    ΓÇó Edge (web)        ΓÇó edge    ΓÇó web-javascript ΓÇó Microsoft Edge 142.0.3595.53
+
+[ΓêÜ] Network resources [1,332ms]
+    ΓÇó All expected network resources are available.
+
+! Doctor found issues in 3 categories.
