@@ -47,9 +47,9 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     _messageController.clear();
     try {
       await ref.read(chatRepositoryProvider).sendMessage(
-        appointmentId: widget.appointmentId,
-        content: text,
-      );
+            appointmentId: widget.appointmentId,
+            content: text,
+          );
       ref.invalidate(chatHistoryProvider(widget.appointmentId));
       _scrollToBottom();
     } catch (e) {
@@ -91,7 +91,9 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             child: chatAsync.when(
               data: (messages) {
                 if (messages.isEmpty) {
-                  return const Center(child: Text('No messages yet. Send a secure message to start.'));
+                  return const Center(
+                      child: Text(
+                          'No messages yet. Send a secure message to start.'));
                 }
                 return ListView.builder(
                   controller: _scrollController,
@@ -101,12 +103,13 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                     final msg = messages[index];
                     // Logic to determine if I am the sender (needs user session info)
                     // Mocking: Assume "me" is the one with id 'patient_1' or similar
-                    final bool isMe = msg['sender_id'] != 'prof_1'; // Simplified logic
-                    
+                    final bool isMine =
+                        msg['sender_id'] != 'prof_1'; // Simplified logic
+
                     return MessageBubble(
-                      content: msg['content'] ?? '',
+                      message: msg['content'] ?? '',
                       timestamp: msg['timestamp'] ?? '',
-                      isMe: isMe,
+                      isMine: isMine,
                     );
                   },
                 );
@@ -128,7 +131,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         color: Theme.of(context).cardColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, -5),
           ),
@@ -147,7 +150,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                     borderSide: BorderSide.none,
                   ),
                   filled: true,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 ),
                 textCapitalization: TextCapitalization.sentences,
               ),
@@ -165,7 +169,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   }
 }
 
-final chatHistoryProvider = FutureProvider.family<List<Map<String, dynamic>>, String>((ref, id) async {
+final chatHistoryProvider =
+    FutureProvider.family<List<Map<String, dynamic>>, String>((ref, id) async {
   final repo = ref.watch(chatRepositoryProvider);
   return await repo.getChatHistory(id);
 });

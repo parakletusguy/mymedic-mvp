@@ -35,9 +35,11 @@ class _BookingScreenState extends ConsumerState<BookingScreen> {
         _initializePayment(booking['id']);
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.toString())),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toString())),
+        );
+      }
     }
   }
 
@@ -45,7 +47,7 @@ class _BookingScreenState extends ConsumerState<BookingScreen> {
     try {
       final payRepo = ref.read(paymentRepositoryProvider);
       final payment = await payRepo.initializePayment(appointmentId);
-      
+
       if (mounted) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
@@ -57,16 +59,19 @@ class _BookingScreenState extends ConsumerState<BookingScreen> {
         );
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Payment initialization failed: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Payment initialization failed: $e')),
+        );
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final dateStr = DateFormat('yyyy-MM-dd').format(_selectedDate);
-    final slotsAsync = ref.watch(slotsProvider((profId: widget.professional['user_id'] as String, date: dateStr)));
+    final slotsAsync = ref.watch(slotsProvider(
+        (profId: widget.professional['user_id'] as String, date: dateStr)));
 
     return Scaffold(
       appBar: AppBar(title: const Text('Select Time Slot')),
@@ -88,7 +93,8 @@ class _BookingScreenState extends ConsumerState<BookingScreen> {
             child: slotsAsync.when(
               data: (slots) {
                 if (slots.isEmpty) {
-                  return const Center(child: Text('No slots available for this date.'));
+                  return const Center(
+                      child: Text('No slots available for this date.'));
                 }
                 return GridView.builder(
                   padding: const EdgeInsets.all(16),
@@ -101,12 +107,14 @@ class _BookingScreenState extends ConsumerState<BookingScreen> {
                   itemCount: slots.length,
                   itemBuilder: (context, index) {
                     final slot = slots[index];
-                    final time = DateFormat('HH:mm').format(DateTime.parse(slot['start_time']).toLocal());
+                    final time = DateFormat('HH:mm')
+                        .format(DateTime.parse(slot['start_time']).toLocal());
                     final isSelected = _selectedSlot == slot;
 
                     return TimeSlotChip(
                       label: time,
-                      state: isSelected ? SlotState.selected : SlotState.available,
+                      state:
+                          isSelected ? SlotState.selected : SlotState.available,
                       onTap: () => setState(() => _selectedSlot = slot),
                     );
                   },
@@ -132,14 +140,16 @@ class _BookingScreenState extends ConsumerState<BookingScreen> {
   }
 }
 
-final futureSlotsProvider = FutureProvider.family<List<Map<String, dynamic>>, String>((ref, params) async {
-  final parts = params.split('|'); // professionalId|date
+final futureSlotsProvider =
+    FutureProvider.family<List<Map<String, dynamic>>, String>(
+        (ref, params) async {
   // Wait, Provider.family takes one argument. I'll use a string join.
   return []; // Placeholder for implementation logic below
 });
 
 // Correct implementation of family provider
-final slotsProvider = FutureProvider.family<List<Map<String, dynamic>>, ({String profId, String date})>((ref, args) async {
+final slotsProvider = FutureProvider.family<List<Map<String, dynamic>>,
+    ({String profId, String date})>((ref, args) async {
   final repo = ref.watch(bookingRepositoryProvider);
   return await repo.getAvailableSlots(args.profId, args.date);
 });
